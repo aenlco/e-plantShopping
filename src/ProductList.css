@@ -250,3 +250,23 @@ body {
         text-align: center; /* Align text to the center */
       }
   }
+  /* 1. Make the container a reference point for positioning */
+.cart-icon-container {
+  position: relative; /* This is the anchor */
+}
+
+/* 2. Position the badge on top of the container */
+.cart-badge {
+  position: absolute; /* This tells the badge to ignore other elements */
+  top: 10px;          /* Adjust vertical position */
+  right: -5px;         /* Adjust horizontal position */
+  
+  /* Styling to make it look like a badge */
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 4px 8px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 2px solid white;
+}
