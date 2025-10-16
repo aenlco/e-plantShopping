@@ -3,32 +3,30 @@ import { createSlice } from '@reduxjs/toolkit';
 export const CartSlice = createSlice({
   name: 'cart',
   initialState: {
-    items: [], // Initialize items as an empty array
+    items: [],
   },
   reducers: {
     addItem: (state, action) => {
-     const { name, image, cost } = state[action.payload];
-     const existingItem = state.items.find(item => item.name === name); 
-     if (existingItem) {
-        existingItem.quanitiy++;
+      const newItem = action.payload;
+      const existingItem = state.items.find(item => item.name === newItem.name);
+      if (existingItem) {
+        existingItem.quantity++;
       } else {
-        state.items.push({ name, image, cost, quantity: 1 });
+        state.items.push({ ...newItem, quantity: 1 });
       }
     },
+
     removeItem: (state, action) => {
-    const {name, image, cost } = state[action.payload];
-    state.items = state.items.filter(item => item.name !== action.payload);
-     if (item && item.quantity > 0) {
-        item.quantity--;
-     }
+      const nameToRemove = action.payload.name;
+      state.items = state.items.filter(item => item.name !== nameToRemove);
     },
+
     updateQuantity: (state, action) => {
-        const { name, quantity } = action.payload; // Destructure the product name and new quantity from the action payload
-        // Find the item in the cart that matches the given name
-        const itemToUpdate = state.items.find(item => item.name === name);
-        if (itemToUpdate) {
-            itemToUpdate.quantity = quantity; // If the item is found, update its quantity to the new value
-        }
+      const { name, quantity } = action.payload;
+      const itemToUpdate = state.items.find(item => item.name === name);
+      if (itemToUpdate) {
+        itemToUpdate.quantity = quantity;
+      }
     },
   },
 });
