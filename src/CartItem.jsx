@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addItem, removeItem, updateQuantity } from './CartSlice';
+import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
@@ -20,9 +20,15 @@ const CartItem = ({ onContinueShopping }) => {
     dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
 
-  const handleDecrement = (item) => {
-   dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
-  };
+   const handleDecrement = (item) => {
+  // If the quantity is greater than 1, just decrease it.
+  if (item.quantity > 1) {
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
+  } else {
+    // If the quantity is exactly 1, dispatch the remove action instead.
+    dispatch(removeItem({ name: item.name }));
+  }
+};
 
   const handleRemove = (item) => {
    dispatch(removeItem({ name: item.name }));
