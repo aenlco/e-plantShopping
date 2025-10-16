@@ -8,9 +8,8 @@ function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false);
     const [addedToCart, setAddedToCart] = useState({});
-    const dispatch = useDispatch(); // <-- CRITICAL FIX: Initialize dispatch
+    const dispatch = useDispatch();
 
-    // CRITICAL FIX: All 'cost' values are now numbers
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -155,7 +154,7 @@ function ProductList({ onHomeClick }) {
                                         />
                                         <div className="product-title">{plant.name}</div>
                                         <div className="product-description">{plant.description}</div>
-                                        <div className="product-cost">${plant.cost}</div> {/* <-- Displaying cost correctly */}
+                                        <div className="product-cost">${plant.cost}</div>
                                         <button
                                             className="product-button"
                                             onClick={() => handleAddToCart(plant)}
