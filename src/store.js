@@ -7,4 +7,5 @@ import CartItem from '/.CartItem';
         cart: cartReducer,
     },
 });
-export default store
+
+export default store;
